@@ -1,0 +1,25 @@
+version: '3.7'
+
+services: 
+  nginx:
+    build:
+      context: docker-context/nginx
+      dockerfile: Dockerfile
+    volumes:
+    - ./config/nginx/staff/sites-enabled:/etc/nginx/sites-enabled
+    - ./config/nginx/staff/fastcgi_params:/etc/nginx/fastcgi_params
+    - ./config/nginx/cert:/etc/nginx/cert 
+    - ./config/nginx/staff/mime.types:/etc/nginx/mime.types
+    - ./config/nginx/staff/nginx.conf:/etc/nginx/nginx.conf
+    - ~/projects/vnlab/point/staff:/var/www/gmo/staff
+    - ./log/nginx:/var/log/nginx
+    ports:
+      - "10443:10443"
+
+  staff:
+    image: php-staff
+    volumes:
+    - ./config/nginx/staff/php7/php-fpm.d:/etc/php7/php-fpm.d
+    - ~/projects/vnlab/point/staff:/var/www/gmo/staff
+    - ./log/staff:/var/log/gmo/staff
+    - ./log/php-fpm:/var/log/php-fpm

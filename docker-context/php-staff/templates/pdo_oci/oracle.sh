@@ -1,0 +1,5 @@
+export ORACLE_HOME=/usr/local/lib/instantclient_11_2
+export NLS_LANG=Japanese_Japan.JA16EUC
+export LD_LIBRARY_PATH=$ORACLE_HOME:$LD_LIBRARY_PATH
+export PATH=$ORACLE_HOME:$PATH
+export NLS_DATE_FORMAT='YYYY-MM-DD HH24:MI:SS'
